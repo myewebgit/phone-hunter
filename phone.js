@@ -1,19 +1,24 @@
+// ******************JavaScript code for phone Search***********
+
 const searchPhone = () =>{
     const searchField = document.getElementById('search-field');
     const serachText = searchField.value;
-    
-    // console.log(serachText);
+
+    // ******* Clear Search Field*********
+
     searchField.value = '';
     const url = `https://openapi.programming-hero.com/api/phones?search=${serachText}`;
-    // console.log(url);
+    
     fetch(url)
     .then(res => res.json())
     .then(data => displaySearchResult(data.data));
 }
 
+// ******************JavaScript code for phone Display***********
 const displaySearchResult = data =>{
-    // console.log(data);
-    const searchResult = document.getElementById('search-result');
+     const searchResult = document.getElementById('search-result');
+
+    // ******* Clear Search Field*********
     searchResult.textContent = '';
     data.forEach(phone =>{
         console.log(phone);
@@ -25,43 +30,42 @@ const displaySearchResult = data =>{
         <div class="card-body  rounded-3">
           <h5 class="card-title">${phone.phone_name}</h5>
           <p class="card-text">${phone.brand}</p>
-         
-          
-          </div>
+         </div>
         </div>
       </div>`;
       searchResult.appendChild(div);
     })
 }
 
+// ******************JavaScript code for phone Detail***********
+
 const loadPhoneDetail = (id) =>{
-    // const phoneId = phone.slug.value;
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     fetch(url)
     .then(res => res.json())
     .then(data => displayPhoneDetail(data.data));
-    // console.log(phoneId);
-}
-const displayPhoneDetail = datap =>{
-    console.log(datap);
+   }
+
+const displayPhoneDetail = dataPhone =>{
+    console.log(dataPhone);
     const phoneDetail = document.getElementById('phone-detail');
         const div = document.createElement('div');
         phoneDetail.innerText = '';
     div.classList.add('card');
     div.innerHTML = `
-    <img src="${datap.image}" class="card-img-top w-100" alt="...">
+    <img src="${dataPhone.image}" class="card-img-top w-100" alt="...">
           <div class="card-body">
-            <h5 class="card-title">${datap.brand}</h5>
-            <h5 class="card-title">${datap.name}</h5>
-            <h5 class="card-title">${datap.releaseDate}</h5>
-            <button id='info-field' onclick="info('${datap.slug}')" 
+            <h5 class="card-title">${dataPhone.brand}</h5>
+            <h5 class="card-title">${dataPhone.name}</h5>
+            <h5 class="card-title">${dataPhone.releaseDate}</h5>
+            <button id='info-field' onclick="info('${dataPhone.slug}')" 
                 type="button" class="btn btn-secondary">Show Details</button>
-            
-            
-            `;
+             `;
     
     phoneDetail.appendChild(div);
 }
+
+// ******************JavaScript code for phone more info***********
 const info = name => {
     const url = `https://openapi.programming-hero.com/api/phone/${name}`;
     fetch(url)
@@ -69,7 +73,7 @@ const info = name => {
     .then(data => phoneSpecification(data.data));
 }
 
-const phoneSpecification = (datap) =>{
+const phoneSpecification = (dataPhone) =>{
     // console.log(phoneInfo);
     const phoneDiv = document.getElementById('phone-info');
      phoneDiv.textContent = '';
@@ -79,9 +83,9 @@ const phoneSpecification = (datap) =>{
     <div class="card-body">
     <h3 class="card-title">Phone Specification</h3>
           
-              <p> <h5>Main Features:</h5>Storage: ${datap.mainFeatures.storage},<br> Display Size: ${datap.mainFeatures.displaySize},<br> Chip Set: ${datap.mainFeatures.chipSet}</p>
-              <p> <h5>Other Specification:</h5> WLAN: ${datap.others.WLAN},<br>Bluetooth:${datap.others.Bluetooth},<br>GPS:${datap.others.GPS}</p>
-              <p><h5 >Release date: </h5>${datap.releaseDate}</p>`;
+              <p> <h5>Main Features:</h5>Storage: ${dataPhone.mainFeatures.storage},<br> Display Size: ${dataPhone.mainFeatures.displaySize},<br> Chip Set: ${dataPhone.mainFeatures.chipSet}</p>
+              <p> <h5>Other Specification:</h5> WLAN: ${dataPhone.others.WLAN},<br>Bluetooth:${dataPhone.others.Bluetooth},<br>GPS:${dataPhone.others.GPS}</p>
+              <p><h5 >Release date: </h5>${dataPhone.releaseDate}</p>`;
     phoneDiv.appendChild(div);
 }
 
