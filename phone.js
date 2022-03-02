@@ -28,8 +28,8 @@ const displaySearchResult = data =>{
         <div onclick="loadPhoneDetail('${phone.slug}')" class="card h-25">
         <img src="${phone.image}" class="card-img-top" alt="...">
         <div class="card-body  rounded-3">
-          <h5 class="card-title">${phone.phone_name}</h5>
-          <p class="card-text">${phone.brand}</p>
+          <h6 class="card-title">Phone Name:${phone.phone_name}</h6>
+          <h6 class="card-text">Phone Brand:${phone.brand}</h6>
          </div>
         </div>
       </div>`;
@@ -55,9 +55,9 @@ const displayPhoneDetail = dataPhone =>{
     div.innerHTML = `
     <img src="${dataPhone.image}" class="card-img-top w-100" alt="...">
           <div class="card-body">
-            <h5 class="card-title">${dataPhone.brand}</h5>
-            <h5 class="card-title">${dataPhone.name}</h5>
-            <h5 class="card-title">${dataPhone.releaseDate}</h5>
+            <h5 class="card-title">Phone Brand:${dataPhone.brand}</h5>
+            <h5 class="card-title">Phone Name:${dataPhone.name}</h5>
+            <h5 class="card-title">Release Date:${dataPhone.releaseDate}</h5>
             <button id='info-field' onclick="info('${dataPhone.slug}')" 
                 type="button" class="btn btn-secondary">Show Details</button>
              `;
