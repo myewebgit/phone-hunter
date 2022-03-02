@@ -25,6 +25,7 @@ const displaySearchResult = data =>{
         <div class="card-body  rounded-3">
           <h5 class="card-title">${phone.phone_name}</h5>
           <p class="card-text">${phone.brand}</p>
+         
           
           </div>
         </div>
