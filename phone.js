@@ -1,6 +1,7 @@
 const searchPhone = () =>{
     const searchField = document.getElementById('search-field');
     const serachText = searchField.value;
+    
     // console.log(serachText);
     searchField.value = '';
     const url = `https://openapi.programming-hero.com/api/phones?search=${serachText}`;
@@ -51,6 +52,7 @@ const displayPhoneDetail = datap =>{
           <div class="card-body">
             <h5 class="card-title">${datap.brand}</h5>
             <h5 class="card-title">${datap.name}</h5>
+            <h5 class="card-title">${datap.releaseDate}</h5>
             <button id='info-field' onclick="info('${datap.slug}')" 
                 type="button" class="btn btn-secondary">Show Details</button>
             
@@ -84,4 +86,4 @@ const phoneSpecification = (datap) =>{
 
 
    
-    
+   
