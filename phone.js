@@ -13,6 +13,7 @@ const searchPhone = () =>{
 const displaySearchResult = data =>{
     // console.log(data);
     const searchResult = document.getElementById('search-result');
+    searchResult.textContent = '';
     data.forEach(phone =>{
         console.log(phone);
         const div = document.createElement('div');
@@ -20,10 +21,10 @@ const displaySearchResult = data =>{
         div.innerHTML = `
         <div onclick="loadPhoneDetail('${phone.slug}')" class="card h-25">
         <img src="${phone.image}" class="card-img-top" alt="...">
-        <div class="card-body rounded-3">
+        <div class="card-body  rounded-3">
           <h5 class="card-title">${phone.phone_name}</h5>
           <p class="card-text">${phone.brand}</p>
-          <a href="${div.innerHTML}" class="btn btn-primary">Go somewhere</a>
+          
           </div>
         </div>
       </div>`;
@@ -42,7 +43,8 @@ const loadPhoneDetail = (id) =>{
 const displayPhoneDetail = datap =>{
     console.log(datap);
     const phoneDetail = document.getElementById('phone-detail');
-    const div = document.createElement('div');
+        const div = document.createElement('div');
+        phoneDetail.innerText = '';
     div.classList.add('card');
     div.innerHTML = `
     <img src="${datap.image}" class="card-img-top w-100" alt="...">
@@ -67,15 +69,16 @@ const info = name => {
 const phoneSpecification = (datap) =>{
     // console.log(phoneInfo);
     const phoneDiv = document.getElementById('phone-info');
+     phoneDiv.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     phoneDiv.innerHTML =`
     <div class="card-body">
-    <h5 class="card-title">Phone Specification</h5>
-          <h5 class="card-title">${datap.releaseDate}</h5>
-              <p>Main Features: ${datap.mainFeatures.storage}</p>
-              <p> Other Specification: ${datap.others.WLAN}</p>
-        <h5 >Release date: ${datap.releaseDate}</h5>`;
+    <h3 class="card-title">Phone Specification</h3>
+          
+              <p> <h5>Main Features:</h5>Storage: ${datap.mainFeatures.storage},<br> Display Size: ${datap.mainFeatures.displaySize},<br> Chip Set: ${datap.mainFeatures.chipSet}</p>
+              <p> <h5>Other Specification:</h5> WLAN: ${datap.others.WLAN},<br>Bluetooth:${datap.others.Bluetooth},<br>GPS:${datap.others.GPS}</p>
+              <p><h5 >Release date: </h5>${datap.releaseDate}</p>`;
     phoneDiv.appendChild(div);
 }
 
